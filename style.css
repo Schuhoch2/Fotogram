@@ -9,6 +9,10 @@ body {
     flex-direction: column;
 }
 
+.noscroll {
+    overflow: hidden;
+}
+
 header {
     height: 112px;
     width: 100%;

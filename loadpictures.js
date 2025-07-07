@@ -36,7 +36,7 @@ function overlayChange() {
 }
 
 function loadPictures() {
-    let pictureRef = document.getElementById('pictures'); // Div-Container for pictures
+    let pictureRef = document.getElementById('pictures');
     pictureRef.innerHTML = "";
 
     for (let index = 0; index < pictureSrcs.length; index++) {
@@ -71,10 +71,13 @@ function toggleOverlay() {
 function blurBackground() {
     let content = document.getElementById('main_content');
     let overlayRef = document.getElementById('overlay');
+    let body = document.getElementById('body')
     if (overlayRef.classList.contains('d_none')) {
         content.classList.toggle('filter')
+        body.classList.toggle('noscroll')
     } else {
         content.classList.remove('filter')
+        body.classList.toggle('noscroll')
     }
 }
 
