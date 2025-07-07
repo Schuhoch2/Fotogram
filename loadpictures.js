@@ -50,8 +50,7 @@ function getPicTemplateHTML(i) {
 }
 function toggleDialog(i) {
     let overlayRef = document.getElementById('overlay');
-    // let overlayClose = document.getElementById('close_overlay');
-    // overlayClose.classList.toggle('d_none');
+    blurBackground();
     overlayRef.innerHTML = "";
     overlayRef.innerHTML = getOverlayTemplateHTML(i);
     overlayRef.classList.toggle('d_none');
@@ -60,30 +59,42 @@ function toggleDialog(i) {
 function updateOverlay(i) {
     let overlayRef = document.getElementById('overlay');
     overlayRef.innerHTML = getOverlayTemplateHTML(i);
-    
+
 }
-function toggleOverlay(){
+function toggleOverlay() {
     let overlayRef = document.getElementById('overlay');
+    blurBackground();
     overlayRef.classList.toggle('d_none');
+
 }
 
-function nextPic(i){
+function blurBackground() {
+    let content = document.getElementById('main_content');
+    let overlayRef = document.getElementById('overlay');
+    if (overlayRef.classList.contains('d_none')) {
+        content.classList.toggle('filter')
+    } else {
+        content.classList.remove('filter')
+    }
+}
+
+function nextPic(i) {
     i++;
-    if (i >= pictureSrcs.length){
+    if (i >= pictureSrcs.length) {
         i = 0;
     }
     updateOverlay(i);
 }
 
-function beforePic(i){
+function beforePic(i) {
     i--;
-    if (i < 0){
+    if (i < 0) {
         i = pictureSrcs.length - 1;
     }
     updateOverlay(i);
 }
 
-function preventBubbling(event){
+function preventBubbling(event) {
     event.stopPropagation();
 }
 
@@ -98,7 +109,7 @@ function getOverlayTemplateHTML(i) {
             ⇐
         </button>
         <p style="text-align: center;">
-            ${i +1} / ${pictureSrcs.length}
+            ${i + 1} / ${pictureSrcs.length}
         </p>
         <button id="btnRight" class="overlayBtn" onclick="nextPic(${i})">
             ⇒
